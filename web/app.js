@@ -206,11 +206,11 @@ function renderDetail(record) {
         <h3>${escapeHtml(record.variantDisplay)}</h3>
         <p>${escapeHtml(record.cancerTypeZh)}｜${escapeHtml(record.cancerTypeEn)}</p>
       </div>
-      <button class="primary-action" id="sendSelectedToAi" type="button">交給 AI 小助理</button>
+      <button class="primary-action" id="sendSelectedToAi" type="button">交給 AI 報告判讀教學助理</button>
     </div>
     <div class="detail-grid">
-      ${infoCard("疾病相關用藥建議", drugList(record.diseaseRelatedDrugs))}
-      ${infoCard("非疾病相關用藥建議", drugList(record.nonDiseaseRelatedDrugs))}
+      ${infoCard("疾病相關治療相關性教學", drugList(record.diseaseRelatedDrugs))}
+      ${infoCard("非疾病相關／研究性方向", drugList(record.nonDiseaseRelatedDrugs))}
       ${infoCard("醫護專業摘要", escapeHtml(record.summaryProfessional || "目前無專業摘要。"), "wide")}
       ${infoCard("PMID", listText(record.pmids))}
       ${infoCard("NCT", listText(record.ncts))}
@@ -232,7 +232,7 @@ function renderDetail(record) {
     els.detailPanel.innerHTML = `
       <div class="empty-state">
         <h3>選擇一筆基因變異</h3>
-        <p>左側結果會顯示癌別、基因、Tier 與用藥方向。點選後可查看醫護版摘要，或交給 AI 小助理產生六卡片說明。</p>
+        <p>左側結果會顯示癌別、基因、Tier 與可能相關藥物方向。點選後可查看醫護版摘要，或交給 AI 報告判讀教學助理產生六卡片說明。</p>
       </div>
     `;
     renderResults();
@@ -303,8 +303,8 @@ function renderAssistant(record, query = "") {
     return;
   }
 
-  const diseaseDrugs = record.diseaseRelatedDrugs.length ? record.diseaseRelatedDrugs : ["本資料庫未列出疾病相關核准或指南建議用藥"];
-  const otherDrugs = record.nonDiseaseRelatedDrugs.length ? record.nonDiseaseRelatedDrugs : ["本資料庫未列出非疾病相關或跨癌別用藥證據"];
+  const diseaseDrugs = record.diseaseRelatedDrugs.length ? record.diseaseRelatedDrugs : ["本資料庫未列出疾病相關之可能相關藥物方向"];
+  const otherDrugs = record.nonDiseaseRelatedDrugs.length ? record.nonDiseaseRelatedDrugs : ["本資料庫未列出非疾病相關、跨癌別或研究性方向"];
   const meaning = record.summaryProfessional || record.summaryPatient || `${record.variantDisplay} 在 ${record.cancerTypeZh || record.cancerTypeEn} 中被資料庫列為 ${record.tier}，需搭配完整臨床資料判讀。`;
 
   els.assistantResults.innerHTML = `
@@ -317,9 +317,9 @@ function renderAssistant(record, query = "") {
       `)}
       ${assistantCard("一、這個變異代表什麼？", escapeHtml(meaning))}
       ${assistantCard("二、證據等級", escapeHtml(tierExplanation(record.tier)))}
-      ${assistantCard("三、與此癌別相關的治療方向", unorderedList(diseaseDrugs))}
-      ${assistantCard("四、非本癌別或延伸證據", unorderedList(otherDrugs))}
-      ${assistantCard("五、提醒", "上述內容是基於院內基因變異知識庫的整理，不代表個人治療建議。實際治療需由腫瘤科醫師依癌別、分期、病理、共變異、用藥史、NCCN/ESMO/TFDA/健保給付與病人臨床狀態判斷。")}
+      ${assistantCard("三、疾病相關治療方向教學", unorderedList(diseaseDrugs))}
+      ${assistantCard("四、非疾病相關／研究性方向", unorderedList(otherDrugs))}
+      ${assistantCard("五、教學重點與限制", "上述內容是基於院內基因變異知識庫的 AI 輔助教學摘要，不代表個人治療建議或醫囑。實際臨床處置需由醫師依癌別、分期、病理、共變異、用藥史、NCCN/ESMO/TFDA/健保給付與病人臨床狀態判斷，並可作為 MDT 討論前整理參考。")}
       ${assistantCard("六、資料來源", `
         本回答來自院內基因變異知識庫。${record.pmids.length ? `<br>PMID：${escapeHtml(record.pmids.join("; "))}` : ""}
         ${record.ncts.length ? `<br>NCT：${escapeHtml(record.ncts.join("; "))}` : ""}
@@ -339,8 +339,8 @@ function assistantCard(title, body) {
 
 function tierExplanation(tier) {
   const explanations = {
-    "I-A": "Tier I-A：已獲主管機關核准用藥或專業治療指引支持，屬於較高等級的臨床處置依據。",
-    "I-B": "Tier I-B：具有臨床可行性的治療證據或明確治療方向，但仍需依癌別、病人條件與給付規範判斷。",
+    "I-A": "Tier I-A：已獲主管機關核准用藥或專業治療指引支持，屬於較高等級的臨床證據，可作為教學與臨床討論時的重要參考。",
+    "I-B": "Tier I-B：具有臨床可行性的治療相關證據或明確治療方向，但仍需依癌別、病人條件與給付規範判斷。",
     "II-C": "Tier II-C：屬於跨癌別、臨床試驗、早期研究或較間接的治療相關證據。",
     "II-D": "Tier II-D：臨床意義、功能影響或治療關聯仍需審慎判讀，需搭配病理、共變異、文獻與臨床脈絡確認。",
   };
@@ -464,8 +464,8 @@ function buildCopyText(record) {
     `癌別：${record.cancerTypeEn}（${record.cancerTypeZh}）`,
     `基因變異：${record.variantDisplay}`,
     `Tier：${record.tier}`,
-    `疾病相關用藥：${record.diseaseRelatedDrugs.join("; ") || "未列出"}`,
-    `非疾病相關用藥：${record.nonDiseaseRelatedDrugs.join("; ") || "未列出"}`,
+    `疾病相關治療相關性教學：${record.diseaseRelatedDrugs.join("; ") || "未列出"}`,
+    `非疾病相關／研究性方向：${record.nonDiseaseRelatedDrugs.join("; ") || "未列出"}`,
     `摘要：${record.summaryProfessional || record.summaryPatient || "未列出"}`,
   ].join("\n");
 }
