@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>精準醫學檢驗報告判讀輔助教學平台</title>
+    <meta
+      name="description"
+      content="以癌症基因檢測報告為核心，提供醫師、醫檢師與精準醫療團隊作為報告判讀訓練、分子檢測教育與臨床討論前整理之輔助工具。"
+    />
+    <link rel="stylesheet" href="./styles.css?v=20260623-2" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="回首頁">
+        <span class="brand-mark">檢</span>
+        <span>
+          <strong>精準醫學檢驗報告教學</strong>
+          <small>Precision Medicine Consultation</small>
+        </span>
+      </a>
+      <nav class="top-nav" aria-label="主要導覽">
+        <a href="#search">基因變異資料庫</a>
+        <a href="#evidence">證據等級</a>
+        <button class="link-button" id="openAssistantTop" type="button">AI 教學助理</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <canvas id="geneCanvas" aria-hidden="true"></canvas>
+        <div class="hero-copy">
+          <p class="eyebrow">一個協助醫師、醫檢師與精準醫療團隊理解癌症基因檢測報告的教學型判讀輔助平台。</p>
+          <h1>精準醫學檢驗報告判讀輔助教學平台</h1>
+          <p class="hero-lede">
+            本平台以癌症基因檢測報告為核心，整合癌別、基因變異、變異類型、證據等級、治療相關性與醫護版摘要，
+            提供醫師、醫檢師與精準醫療團隊作為報告判讀訓練、分子檢測教育與臨床討論前整理之輔助工具。
+          </p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#search">開始報告判讀練習</a>
+            <button class="secondary-action" id="openAssistantHero" type="button">開啟 AI 報告判讀教學助理</button>
+          </div>
+          <p class="hero-note">
+            本平台內容以教學與初步判讀輔助為目的，不取代醫師診斷、治療決策、臨床指引、TFDA 核准、健保給付或多專科團隊討論。
+          </p>
+          <div class="hero-metrics" aria-label="資料庫摘要">
+            <span><strong id="metricRows">--</strong> 筆公開資料</span>
+            <span><strong id="metricGenes">--</strong> 個基因</span>
+            <span><strong id="metricCancers">--</strong> 種癌別</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="quick-links" aria-label="功能入口">
+        <a href="#search"><span>練</span><strong>開始報告判讀練習</strong><small>查癌別、基因、變異、Tier、可能相關藥物方向</small></a>
+        <button type="button" id="openAssistantQuick"><span>AI</span><strong>AI 教學小助理</strong><small>產生醫護版解釋、民眾版解釋與判讀重點</small></button>
+        <a href="#evidence"><span>證</span><strong>Tier 證據等級教學</strong><small>說明 I-A、I-B、II-C、II-D 的差異</small></a>
+        <a href="#workflow"><span>步</span><strong>報告判讀流程範例</strong><small>以 NSCLC、EGFR、ERBB2、ALK、BRAF 等案例教學</small></a>
+        <a href="#source"><span>限</span><strong>資料來源與使用限制</strong><small>本平台為教學與輔助工具，不是醫囑系統</small></a>
+      </section>
+
+      <section class="search-section" id="search">
+        <div class="section-heading">
+          <p class="eyebrow">基因變異資料庫</p>
+          <h2>基因變異資料庫查詢</h2>
+          <p>選擇癌別或基因，篩選已核准公開的後台資料，作為報告判讀訓練與臨床討論前整理。</p>
+        </div>
+
+        <div class="search-toolbar">
+          <label>
+            <span>癌別</span>
+            <select id="cancerFilter">
+              <option value="">全部癌別</option>
+            </select>
+          </label>
+          <label>
+            <span>基因</span>
+            <select id="geneFilter">
+              <option value="">全部基因</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="result-layout">
+          <aside class="result-list" aria-label="查詢結果">
+            <div class="result-list-header">
+              <strong id="resultCount">載入中</strong>
+              <button id="resetFilters" type="button">清除</button>
+            </div>
+            <div id="resultCards" class="result-cards"></div>
+          </aside>
+
+          <article class="detail-panel" id="detailPanel" aria-live="polite">
+            <div class="empty-state">
+              <h3>選擇一筆基因變異</h3>
+              <p>左側結果會顯示癌別、基因、Tier 與可能相關藥物方向。點選後可查看醫護版摘要，或交給 AI 報告判讀教學助理產生六卡片說明。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="steps-section" id="workflow">
+        <div class="section-heading">
+          <p class="eyebrow">報告判讀六步驟</p>
+          <h2>從檢測結果到教學式判讀重點</h2>
+          <p>依序檢視癌別、變異、證據等級、治療相關性與摘要限制，形成可用於報告說明、個案討論或 MDT 前整理的教學重點。</p>
+        </div>
+        <div class="steps-grid">
+          <article><span>1</span><h3>確認癌別與檢體來源</h3><p>判斷此變異是否適用於該癌別與檢體類型，例如組織、血液或 ctDNA。</p></article>
+          <article><span>2</span><h3>確認基因與變異類型</h3><p>了解變異屬於 SNV、Indel、CNV、Amplification 或 Fusion。</p></article>
+          <article><span>3</span><h3>判讀證據等級</h3><p>依 Tier 分類理解此變異的臨床證據強度與可行性。</p></article>
+          <article><span>4</span><h3>區分疾病相關與非疾病相關證據</h3><p>判斷治療方向是否直接適用於該癌別，或僅屬於跨癌別、研究性或臨床試驗證據。</p></article>
+          <article><span>5</span><h3>閱讀醫護版摘要</h3><p>整合基因功能、臨床意義、治療相關性、抗藥性與判讀限制。</p></article>
+          <article><span>6</span><h3>形成教學式判讀重點</h3><p>產生可用於報告說明、個案討論或分子腫瘤委員會前整理的摘要。</p></article>
+        </div>
+      </section>
+
+      <section class="evidence-section" id="evidence">
+        <div class="section-heading">
+          <p class="eyebrow">臨床證據</p>
+          <h2>Tier 證據等級說明</h2>
+        </div>
+        <div class="tier-grid">
+          <article>
+            <span>I-A</span>
+            <h3>已獲核准或指引支持的臨床證據</h3>
+            <p>代表此變異在特定癌別中，已有主管機關核准用藥或專業治療指引支持的臨床處置依據。</p>
+          </article>
+          <article>
+            <span>I-B</span>
+            <h3>具臨床可行性的治療證據</h3>
+            <p>代表此變異有明確治療方向或臨床資料支持，但仍需依癌別、病人條件與給付規範判斷。</p>
+          </article>
+          <article>
+            <span>II-C</span>
+            <h3>跨癌別或研究性證據</h3>
+            <p>代表證據可能來自其他癌別、臨床試驗、早期研究或較間接的治療相關資料。</p>
+          </article>
+          <article>
+            <span>II-D</span>
+            <h3>臨床意義或功能仍需審慎判讀</h3>
+            <p>代表此變異的臨床意義、功能影響或治療關聯仍需搭配病理、共變異、文獻與臨床脈絡確認。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="source-section" id="source">
+        <div>
+          <p class="eyebrow">Data Governance</p>
+          <h2>資料來源與使用限制</h2>
+        </div>
+        <p>
+          本平台第一版使用院內整理後之基因變異知識庫，前台僅呈現後台標記為 approved 的資料。
+          本平台內容以教學與初步判讀輔助為目的，不取代醫師診斷、治療決策、臨床指引、TFDA 核准、健保給付或多專科團隊討論。
+        </p>
+      </section>
+    </main>
+
+    <button class="floating-ai" id="openAssistantFloat" type="button" aria-label="開啟 AI 報告判讀教學助理">AI</button>
+
+    <aside class="assistant-drawer" id="assistantDrawer" aria-hidden="true">
+      <div class="drawer-backdrop" id="closeAssistantBackdrop"></div>
+      <section class="drawer-panel" aria-label="AI 報告判讀教學助理">
+        <div class="drawer-header">
+          <div>
+            <p class="eyebrow">AI Assistant</p>
+            <h2>AI 報告判讀教學助理</h2>
+          </div>
+          <button class="icon-button" id="closeAssistant" type="button" aria-label="關閉">×</button>
+        </div>
+        <div class="assistant-controls">
+          <label>
+            <span>查詢內容</span>
+            <input id="assistantQuery" type="search" placeholder="輸入 EGFR L858R、KRAS wildtype、癌別或藥名" />
+          </label>
+          <button class="primary-action" id="assistantSearch" type="button">產生 AI 輔助教學摘要</button>
+        </div>
+        <div id="assistantResults" class="assistant-results">
+          <p class="helper-text">請輸入查詢內容，或從左側資料庫結果點選「交給 AI 報告判讀教學助理」。</p>
+        </div>
+      </section>
+    </aside>
+
+    <script src="./app.js?v=20260623-2" type="module"></script>
+  </body>
+</html>
