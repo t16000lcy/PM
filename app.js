@@ -26,27 +26,27 @@ const tierRank = { "I-A": 1, "I-B": 2, "II-C": 3, "II-D": 4 };
 const cancerGroups = [
   {
     label: "乳癌",
-    includes: ["Breast cancer", "Her2-receptor negative breast cancer", "Triple-receptor negative breast cancer", "Estrogen-receptor positive breast cancer"],
+    includes: ["Breast cancer family", "Breast cancer", "Her2-receptor negative breast cancer", "Triple-receptor negative breast cancer", "Estrogen-receptor positive breast cancer"],
   },
   {
     label: "肺癌",
-    includes: ["Non-small cell lung carcinoma", "Lung adenocarcinoma", "Lung cancer"],
+    includes: ["Lung cancer / NSCLC family", "Non-small cell lung carcinoma", "Lung adenocarcinoma", "Lung cancer"],
   },
   {
     label: "大腸直腸癌",
-    includes: ["Colorectal cancer", "Colorectal adenocarcinoma", "Cecum adenocarcinoma", "Rectum adenocarcinoma"],
+    includes: ["Colorectal cancer family", "Colorectal cancer", "Colorectal adenocarcinoma", "Cecum adenocarcinoma", "Rectum adenocarcinoma"],
   },
   {
     label: "攝護腺癌",
-    includes: ["Prostate carcinoma", "Prostate adenocarcinoma"],
+    includes: ["Prostate cancer family", "Prostate carcinoma", "Prostate adenocarcinoma"],
   },
   {
     label: "卵巢癌",
-    includes: ["Ovarian mucinous adenocarcinoma"],
+    includes: ["Ovarian cancer family", "Ovarian mucinous adenocarcinoma"],
   },
   {
     label: "肝膽系統癌",
-    includes: ["Hepatocellular carcinoma", "Intrahepatic cholangiocarcinoma", "Bile duct adenocarcinoma"],
+    includes: ["Biliary tract cancer family", "Hepatocellular carcinoma", "Intrahepatic cholangiocarcinoma", "Bile duct adenocarcinoma"],
   },
   {
     label: "胃腸道基質瘤",
@@ -76,7 +76,7 @@ async function loadVariantDatabase() {
   let lastError = null;
   for (const url of candidates) {
     try {
-      const response = await fetch(`${url}?v=20260623-3`, { cache: "no-store" });
+      const response = await fetch(`${url}?v=20260623-7`, { cache: "no-store" });
       if (!response.ok) {
         throw new Error(`${url} returned ${response.status}`);
       }
