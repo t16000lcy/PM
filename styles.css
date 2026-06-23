@@ -317,7 +317,7 @@ a {
 
 .quick-links {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 1px;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -1263,7 +1263,7 @@ select {
   .patient-flow,
   .warning-grid,
   .faq-list {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .patient-flow article:not(:last-child)::after {
