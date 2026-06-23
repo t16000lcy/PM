@@ -37,7 +37,7 @@
             提供醫師、醫檢師與精準醫療團隊作為報告判讀訓練、分子檢測教育與臨床討論前整理之輔助工具。
           </p>
           <div class="hero-actions">
-            <a class="primary-action" href="#search">開始報告判讀練習</a>
+            <a class="primary-action" href="#lesson">開始 10 分鐘報告判讀教材</a>
             <button class="secondary-action" id="openAssistantHero" type="button">開啟 AI 報告判讀教學助理</button>
           </div>
           <p class="hero-note">
@@ -51,8 +51,144 @@
         </div>
       </section>
 
+      <section class="lesson-section" id="lesson">
+        <div class="section-heading">
+          <p class="eyebrow">10 分鐘入門教材</p>
+          <h2>精準醫學報告解讀 10 分鐘入門</h2>
+          <p>將簡報內容轉為可快速掃讀的互動式教材，協助醫師與醫檢師先建立判讀順序，再進入基因變異資料庫查詢。</p>
+        </div>
+        <p class="teaching-reminder">教學提醒：本平台為教學與初步判讀輔助，不取代醫師診斷、治療決策、臨床指引、TFDA 核准、健保給付或 MTB 討論。</p>
+
+        <div class="lesson-block">
+          <div class="lesson-block-heading">
+            <span>01</span>
+            <div>
+              <h3>五層判讀架構</h3>
+              <p>先確認檢體與平台限制，再解讀變異、證據力與臨床討論方向。</p>
+            </div>
+          </div>
+          <div class="lesson-grid five-layer-grid">
+            <article class="lesson-card">
+              <strong>檢體</strong>
+              <h4>組織／血液</h4>
+              <p>確認腫瘤含量、採檢時間與檢體品質。檢體品質不佳時，陰性結果可信度會下降。</p>
+            </article>
+            <article class="lesson-card">
+              <strong>平台</strong>
+              <h4>Panel 範圍與 LOD</h4>
+              <p>確認涵蓋基因數、最低偵測極限與 QC 結果。Panel 未涵蓋的基因，不能解讀為沒有變異。</p>
+            </article>
+            <article class="lesson-card">
+              <strong>結果</strong>
+              <h4>SNV／Indel、CNV、Fusion</h4>
+              <p>分辨變異型態與報告呈現方式，並留意 amplification、fusion 或低頻變異的判讀限制。</p>
+            </article>
+            <article class="lesson-card">
+              <strong>藥物與證據力</strong>
+              <h4>Tier／Level 與資料來源</h4>
+              <p>整合指引、臨床試驗、資料庫與文獻。證據等級低不代表完全無意義，但不能直接等同標準治療。</p>
+            </article>
+            <article class="lesson-card">
+              <strong>臨床決策</strong>
+              <h4>治療方向討論</h4>
+              <p>將標靶、免疫、化療、保守療法與替代治療討論放回病理、影像、治療線別與病程脈絡中。</p>
+            </article>
+          </div>
+          <p class="teaching-reminder">教學提醒：以上架構僅作為報告判讀訓練與討論前整理，不取代醫師診斷、治療決策、臨床指引、TFDA 核准、健保給付或 MTB 討論。</p>
+        </div>
+
+        <div class="lesson-block">
+          <div class="lesson-block-heading">
+            <span>02</span>
+            <div>
+              <h3>實體腫瘤 NGS vs 液態切片 NGS</h3>
+              <p>兩種檢測回答的問題不同，最重要的是避免把陰性或低頻結果過度解讀。</p>
+            </div>
+          </div>
+          <div class="comparison-grid">
+            <article class="comparison-card">
+              <h4>實體腫瘤 NGS</h4>
+              <dl>
+                <dt>適合情境</dt>
+                <dd>初診或復發轉移時完整分子分型、標準檢測陰性但仍需尋找標的、評估 Fusion／CNV／MSI／TMB。</dd>
+                <dt>優勢</dt>
+                <dd>腫瘤 DNA 較多，可由病理直接確認腫瘤比例與檢體區域。</dd>
+                <dt>限制</dt>
+                <dd>具侵入性，舊檢體可能 DNA 降解，單一切片可能低估腫瘤異質性。</dd>
+              </dl>
+            </article>
+            <article class="comparison-card">
+              <h4>液態切片 NGS</h4>
+              <dl>
+                <dt>適合情境</dt>
+                <dd>組織不足、不適合切片、疾病進展時尋找抗藥變異、治療後動態追蹤或 MRD／復發風險評估。</dd>
+                <dt>優勢</dt>
+                <dd>可反映全身疾病訊號，適合動態監測與追蹤腫瘤負荷變化。</dd>
+                <dt>限制</dt>
+                <dd>低 shedding 可能偵測不到；陰性不等於沒有腫瘤或沒有變異，且需排除 clonal hematopoiesis。</dd>
+              </dl>
+            </article>
+          </div>
+          <p class="teaching-reminder">教學提醒：檢測方式需依臨床問題選擇，本平台內容不取代醫師診斷、治療決策、臨床指引、TFDA 核准、健保給付或 MTB 討論。</p>
+        </div>
+
+        <div class="lesson-block">
+          <div class="lesson-block-heading">
+            <span>03</span>
+            <div>
+              <h3>看到變異後：先分層，再排序</h3>
+              <p>不要只看基因名稱，應先判斷變異角色，再決定判讀優先順序。</p>
+            </div>
+          </div>
+          <ol class="priority-list">
+            <li><strong>主驅動變異</strong><span>例如 EGFR、ALK、BRAF、KRAS 等，先問是否有標準治療或指引支持。</span></li>
+            <li><strong>抗藥機轉</strong><span>例如 EGFR T790M、MET amplification，判斷是否能解釋治療失敗或抗藥。</span></li>
+            <li><strong>高證據等級可行動變異</strong><span>優先確認 Tier／Level、癌別適用性、指引與臨床試驗條件。</span></li>
+            <li><strong>共變異</strong><span>例如 TP53、STK11、KEAP1，思考預後、免疫治療或組合治療的教學意義。</span></li>
+            <li><strong>VUS</strong><span>證據不足或不一致，通常不應作為直接治療依據。</span></li>
+          </ol>
+          <p class="teaching-reminder">教學提醒：排序結果僅供教學與討論前整理，不取代醫師診斷、治療決策、臨床指引、TFDA 核准、健保給付或 MTB 討論。</p>
+        </div>
+
+        <div class="lesson-block">
+          <div class="lesson-block-heading">
+            <span>04</span>
+            <div>
+              <h3>臨床應用時間軸</h3>
+              <p>同一份 NGS 報告在不同治療階段，回答的臨床問題會不同。</p>
+            </div>
+          </div>
+          <div class="timeline-grid">
+            <article><span>治療前</span><p>分子分型、選擇標靶或免疫方向、評估臨床試驗。</p></article>
+            <article><span>治療中</span><p>追蹤分子反應、腫瘤負荷變化，輔助療效評估。</p></article>
+            <article><span>疾病進展</span><p>尋找抗藥變異，重新規劃治療，回到 MTB 討論。</p></article>
+            <article><span>治療後</span><p>MRD、復發風險與高風險族群追蹤，需整合影像與病理。</p></article>
+          </div>
+          <p class="teaching-reminder">教學提醒：時間軸僅作為教學式判讀輔助，不取代醫師診斷、治療決策、臨床指引、TFDA 核准、健保給付或 MTB 討論。</p>
+        </div>
+
+        <div class="lesson-block">
+          <div class="lesson-block-heading">
+            <span>05</span>
+            <div>
+              <h3>報告判讀前五問</h3>
+              <p>進入個案討論前，先用五個問題檢查是否有過度解讀風險。</p>
+            </div>
+          </div>
+          <div class="checklist-grid">
+            <label><input type="checkbox" /> 檢體是什麼？品質與腫瘤含量足夠嗎？</label>
+            <label><input type="checkbox" /> Panel 涵蓋哪些基因與變異型態？LOD 是多少？</label>
+            <label><input type="checkbox" /> 變異是 driver、resistance、co-mutation，還是 VUS？</label>
+            <label><input type="checkbox" /> 證據等級是否支持標準治療、臨床試驗或僅供參考？</label>
+            <label><input type="checkbox" /> 結果是否與病理、影像、治療線別與病程一致？</label>
+          </div>
+          <p class="lesson-closing">報告價值不是「找到很多基因」，而是協助臨床團隊提出更安全、合理且可追溯的下一步討論。</p>
+          <p class="teaching-reminder">教學提醒：本平台為教學與初步判讀輔助，不取代醫師診斷、治療決策、臨床指引、TFDA 核准、健保給付或 MTB 討論。</p>
+        </div>
+      </section>
+
       <section class="quick-links" aria-label="功能入口">
-        <a href="#search"><span>練</span><strong>開始報告判讀練習</strong><small>查癌別、基因、變異、Tier、可能相關藥物方向</small></a>
+        <a href="#lesson"><span>練</span><strong>開始報告判讀練習</strong><small>先用 10 分鐘教材建立五層判讀架構</small></a>
         <button type="button" id="openAssistantQuick"><span>AI</span><strong>AI 教學小助理</strong><small>產生醫護版解釋、民眾版解釋與判讀重點</small></button>
         <a href="#evidence"><span>證</span><strong>Tier 證據等級教學</strong><small>說明 I-A、I-B、II-C、II-D 的差異</small></a>
         <a href="#workflow"><span>步</span><strong>報告判讀流程範例</strong><small>以 NSCLC、EGFR、ERBB2、ALK、BRAF 等案例教學</small></a>
@@ -174,6 +310,11 @@
             <input id="assistantQuery" type="search" placeholder="輸入 EGFR L858R、KRAS wildtype、癌別或藥名" />
           </label>
           <button class="primary-action" id="assistantSearch" type="button">產生 AI 輔助教學摘要</button>
+        </div>
+        <div class="assistant-quick-actions" aria-label="AI 快捷教學提示">
+          <button type="button" data-ai-mode="fiveLayer">用五層架構解讀</button>
+          <button type="button" data-ai-mode="overread">判斷是否可能過度解讀</button>
+          <button type="button" data-ai-mode="teaching">產生教學版說明</button>
         </div>
         <div id="assistantResults" class="assistant-results">
           <p class="helper-text">請輸入查詢內容，或從左側資料庫結果點選「交給 AI 報告判讀教學助理」。</p>

@@ -2,6 +2,7 @@ const state = {
   records: [],
   filtered: [],
   selected: null,
+  assistantMode: "standard",
 };
 
 const els = {
@@ -18,6 +19,7 @@ const els = {
   assistantQuery: document.querySelector("#assistantQuery"),
   assistantSearch: document.querySelector("#assistantSearch"),
   assistantResults: document.querySelector("#assistantResults"),
+  assistantQuickActions: document.querySelectorAll("[data-ai-mode]"),
 };
 
 const tierRank = { "I-A": 1, "I-B": 2, "II-C": 3, "II-D": 4 };
@@ -109,13 +111,21 @@ function wireEvents() {
   document.querySelector("#closeAssistantBackdrop").addEventListener("click", closeAssistant);
   els.assistantSearch.addEventListener("click", () => {
     const record = findBestRecord(els.assistantQuery.value);
-    renderAssistant(record, els.assistantQuery.value);
+    renderAssistant(record, els.assistantQuery.value, state.assistantMode);
   });
   els.assistantQuery.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       const record = findBestRecord(els.assistantQuery.value);
-      renderAssistant(record, els.assistantQuery.value);
+      renderAssistant(record, els.assistantQuery.value, state.assistantMode);
     }
+  });
+  els.assistantQuickActions.forEach((button) => {
+    button.addEventListener("click", () => {
+      state.assistantMode = button.dataset.aiMode || "standard";
+      updateAssistantModeButtons();
+      const record = findBestRecord(els.assistantQuery.value);
+      renderAssistant(record, els.assistantQuery.value, state.assistantMode);
+    });
   });
 }
 
@@ -251,9 +261,10 @@ function infoCard(title, body, variant = "") {
 function openAssistant(record = null) {
   els.drawer.classList.add("is-open");
   els.drawer.setAttribute("aria-hidden", "false");
+  updateAssistantModeButtons();
   if (record) {
     els.assistantQuery.value = record.variantDisplay;
-    renderAssistant(record);
+    renderAssistant(record, "", state.assistantMode);
   } else {
     setTimeout(() => els.assistantQuery.focus(), 0);
   }
@@ -295,7 +306,7 @@ function findBestRecord(query) {
   return candidates[0]?.score > 0 ? candidates[0].record : null;
 }
 
-function renderAssistant(record, query = "") {
+function renderAssistant(record, query = "", mode = "standard") {
   if (!record) {
     els.assistantResults.innerHTML = `
       <p class="helper-text">找不到「${escapeHtml(query)}」相關的 approved 資料。請嘗試輸入癌別、基因名稱、變異點位或藥名。</p>
@@ -315,6 +326,7 @@ function renderAssistant(record, query = "") {
         Tier：${escapeHtml(record.tier)}<br>
         變異類型：${escapeHtml(record.variantType || "variant")}
       `)}
+      ${assistantModeCard(record, mode)}
       ${assistantCard("一、這個變異代表什麼？", escapeHtml(meaning))}
       ${assistantCard("二、證據等級", escapeHtml(tierExplanation(record.tier)))}
       ${assistantCard("三、疾病相關治療方向教學", unorderedList(diseaseDrugs))}
@@ -326,6 +338,45 @@ function renderAssistant(record, query = "") {
       `)}
     </div>
   `;
+}
+
+function updateAssistantModeButtons() {
+  els.assistantQuickActions.forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.aiMode === state.assistantMode);
+  });
+}
+
+function assistantModeCard(record, mode) {
+  if (mode === "fiveLayer") {
+    return assistantCard("快捷模式：用五層架構解讀", `
+      <ul>
+        <li>檢體：先確認組織或血液、腫瘤含量、採檢時間與 QC。</li>
+        <li>平台：確認 Panel 是否涵蓋 ${escapeHtml(record.gene)}、LOD 與可偵測的變異型態。</li>
+        <li>結果：本筆資料為 ${escapeHtml(record.variantDisplay)}，變異類型為 ${escapeHtml(record.variantType || "variant")}。</li>
+        <li>藥物與證據力：目前資料庫列為 ${escapeHtml(record.tier)}，需連同指引、臨床試驗與資料庫摘要判讀。</li>
+        <li>臨床決策：僅作為教學與討論前整理，需回到病理、影像、治療線別與病人狀態。</li>
+      </ul>
+    `);
+  }
+  if (mode === "overread") {
+    return assistantCard("快捷模式：過度解讀檢查", `
+      <ul>
+        <li>不要把 Panel 未涵蓋的基因解讀為「沒有變異」。</li>
+        <li>液態切片陰性不等於沒有腫瘤或沒有變異，需留意 ctDNA shedding。</li>
+        <li>Tier 較低、跨癌別證據或 VUS 不應直接等同標準治療方向。</li>
+        <li>治療相關性需區分疾病相關、非疾病相關、研究性與抗藥機轉。</li>
+        <li>需確認結果是否符合病理、影像、治療線別與病程。</li>
+      </ul>
+    `);
+  }
+  if (mode === "teaching") {
+    return assistantCard("快捷模式：教學版說明", `
+      這筆結果可先用「癌別、檢體、平台限制、變異角色、證據等級、治療相關性」六個角度解讀。
+      教學重點是分辨 ${escapeHtml(record.variantDisplay)} 在 ${escapeHtml(record.cancerTypeZh || record.cancerTypeEn)} 中的證據強度與適用限制，
+      並說明它能提供臨床討論方向，但不能單獨決定治療。
+    `);
+  }
+  return "";
 }
 
 function assistantCard(title, body) {
