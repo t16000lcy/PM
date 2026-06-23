@@ -8,7 +8,7 @@
       name="description"
       content="以癌症基因檢測報告為核心，提供醫師、醫檢師與精準醫療團隊作為報告判讀訓練、分子檢測教育與臨床討論前整理之輔助工具。"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260623-2" />
+    <link rel="stylesheet" href="./styles.css?v=20260623-3" />
   </head>
   <body>
     <header class="site-header">
@@ -20,9 +20,13 @@
         </span>
       </a>
       <nav class="top-nav" aria-label="主要導覽">
+        <a href="#home">首頁</a>
+        <a href="#lesson">10 分鐘報告判讀教材</a>
         <a href="#search">基因變異資料庫</a>
-        <a href="#evidence">證據等級</a>
+        <a href="#evidence">Tier 證據等級</a>
+        <a href="#patient-education">病人衛教</a>
         <button class="link-button" id="openAssistantTop" type="button">AI 教學助理</button>
+        <a href="#source">資料來源與使用限制</a>
       </nav>
     </header>
 
@@ -187,6 +191,137 @@
         </div>
       </section>
 
+      <section class="patient-section" id="patient-education">
+        <div class="section-heading">
+          <p class="eyebrow">Patient Education</p>
+          <h2>病人衛教：液態切片 NGS 癌症基因檢測</h2>
+          <p>以病人可理解的情境說明檢測目的、流程、限制與常見問題，協助回診前先整理想問醫師的重點。</p>
+        </div>
+        <p class="teaching-reminder">衛教提醒：本區內容為病人教育與初步理解輔助，不取代醫師診斷、治療決策、臨床指引、TFDA 核准、健保給付或 MTB 討論。</p>
+
+        <div class="patient-module">
+          <div class="lesson-block-heading">
+            <span>01</span>
+            <div>
+              <h3>我為什麼需要做這個檢測？</h3>
+              <p>液態切片透過抽血分析血液中的 ctDNA，可能協助醫療團隊評估癌症相關基因變異、治療選擇與追蹤方向。</p>
+            </div>
+          </div>
+          <div class="scenario-grid">
+            <article><strong>可能情境 1</strong><h4>治療前想找治療線索</h4><p>醫師可能希望知道腫瘤是否帶有與標靶治療相關的基因變異。</p></article>
+            <article><strong>可能情境 2</strong><h4>組織檢體不足</h4><p>如果腫瘤組織不足、不容易再切片，液態切片可能提供另一種檢測選項。</p></article>
+            <article><strong>可能情境 3</strong><h4>治療後追蹤</h4><p>治療後可觀察 ctDNA 變化，輔助評估治療反應或復發風險。</p></article>
+            <article><strong>可能情境 4</strong><h4>疾病進展或懷疑抗藥性</h4><p>若治療一段時間後疾病進展，醫師可能想了解是否出現抗藥性相關變異。</p></article>
+          </div>
+        </div>
+
+        <div class="patient-module">
+          <div class="lesson-block-heading">
+            <span>02</span>
+            <div>
+              <h3>哪些癌症可能會用到？</h3>
+              <p>以下癌別在臨床上可能會依病況討論液態切片 NGS，但是否適合檢測，仍需由臨床醫師依癌別、分期、治療狀態與檢體條件評估。</p>
+            </div>
+          </div>
+          <div class="cancer-icon-grid" aria-label="常見討論癌別">
+            <article><span>肺</span><strong>肺癌</strong></article>
+            <article><span>腸</span><strong>大腸直腸癌</strong></article>
+            <article><span>乳</span><strong>乳癌</strong></article>
+            <article><span>攝</span><strong>攝護腺癌</strong></article>
+            <article><span>膀</span><strong>膀胱癌</strong></article>
+            <article><span>頸</span><strong>頭頸癌</strong></article>
+            <article><span>肝</span><strong>肝癌</strong></article>
+          </div>
+        </div>
+
+        <div class="patient-module">
+          <div class="lesson-block-heading">
+            <span>03</span>
+            <div>
+              <h3>檢測流程</h3>
+              <p>從醫師評估到回診討論，重點是「可討論、可追蹤、負責任」。</p>
+            </div>
+          </div>
+          <div class="patient-flow">
+            <article><span>1</span><h4>醫師評估</h4><p>確認癌別、病程、治療狀態與是否適合液態切片。</p></article>
+            <article><span>2</span><h4>抽血採檢</h4><p>依檢驗流程採集血液。</p></article>
+            <article><span>3</span><h4>實驗室分析</h4><p>進行 ctDNA 分析與 NGS 定序。</p></article>
+            <article><span>4</span><h4>專業判讀</h4><p>由醫檢師與醫師進行資訊分析、變異判讀與報告確認。</p></article>
+            <article><span>5</span><h4>回診討論</h4><p>與臨床醫師討論治療選擇、追蹤策略或是否需要其他檢查。</p></article>
+          </div>
+        </div>
+
+        <div class="patient-module limitation-module">
+          <div class="lesson-block-heading">
+            <span>04</span>
+            <div>
+              <h3>檢測限制：陰性不代表一定沒有癌症基因變異</h3>
+              <p>報告結果需要回到檢體品質、ctDNA 含量、偵測極限與檢測範圍一起判讀。</p>
+            </div>
+          </div>
+          <div class="warning-grid">
+            <article><strong>1</strong><h4>沒有檢出，不等於完全沒有變異</h4><p>可能是血液中的 ctDNA 量太低，或變異比例低於偵測極限。</p></article>
+            <article><strong>2</strong><h4>檢測只看特定基因與區域</h4><p>Panel 沒有涵蓋的基因或區域，不能解讀成「一定沒有變異」。</p></article>
+            <article><strong>3</strong><h4>治療時間點會影響結果</h4><p>治療後腫瘤量下降，ctDNA 可能變少，進而影響檢出率。</p></article>
+            <article><strong>4</strong><h4>報告需要臨床整合</h4><p>結果需搭配病理、影像、腫瘤指數、用藥史與病程判斷。</p></article>
+          </div>
+        </div>
+
+        <div class="patient-module">
+          <div class="lesson-block-heading">
+            <span>05</span>
+            <div>
+              <h3>本院液態切片 NGS 檢測項目</h3>
+              <p>請和醫師討論選擇合適 panel。基因越多不一定越適合，重點是檢測目的是否符合目前臨床問題。</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="panel-table">
+              <thead>
+                <tr>
+                  <th>Panel</th>
+                  <th>適合討論的臨床問題</th>
+                  <th>特色</th>
+                  <th>費用</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>24 cancer panel</td><td>基礎標靶相關變異評估</td><td>核心癌症基因</td><td>依院內公告</td></tr>
+                <tr><td>55 cancer panel</td><td>較完整標靶與 DNA 修復相關基因</td><td>中等範圍</td><td>依院內公告</td></tr>
+                <tr><td>77 cancer panel</td><td>擴增型標靶與研究相關 biomarker</td><td>較完整探索</td><td>依院內公告</td></tr>
+                <tr><td>197 cancer panel</td><td>肺癌、大腸直腸癌腫瘤負荷監測</td><td>偏向 surveillance</td><td>依院內公告</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="patient-update">費用與檢測項目可能調整；更新日期：2026/06/23。實際內容請以院內公告、醫囑與檢驗單位說明為準。</p>
+        </div>
+
+        <div class="patient-module">
+          <div class="lesson-block-heading">
+            <span>06</span>
+            <div>
+              <h3>病人版常見問題 FAQ</h3>
+              <p>回診前可先閱讀，並把不清楚的問題帶回門診與醫療團隊討論。</p>
+            </div>
+          </div>
+          <div class="faq-list">
+            <details><summary>Q1. 液態切片是不是抽血就可以檢查癌症？</summary><p>不是。它不是一般癌症篩檢，也不是單獨用來診斷癌症。主要是針對已由醫師評估的癌症病人，輔助基因變異分析、治療選擇或追蹤。</p></details>
+            <details><summary>Q2. 檢測沒有發現變異，是不是代表沒有癌症？</summary><p>不是。沒有檢出可能和 ctDNA 量太低、檢測範圍、治療時間點或腫瘤特性有關。</p></details>
+            <details><summary>Q3. 液態切片可以取代組織切片嗎？</summary><p>通常不能完全取代。組織切片仍是病理診斷的重要依據，液態切片多半是提供額外資訊或在組織不足時作為替代選項。</p></details>
+            <details><summary>Q4. 做了檢測就一定有標靶藥可以用嗎？</summary><p>不一定。即使檢出基因變異，也要看癌別、變異證據等級、藥物核准狀態、健保給付、病人身體狀況與醫師判斷。</p></details>
+            <details><summary>Q5. 為什麼治療中也可能需要檢測？</summary><p>治療後或疾病進展時，腫瘤基因狀態可能改變。液態切片可輔助觀察 ctDNA 變化或抗藥性線索。</p></details>
+            <details><summary>Q6. 報告中的基因變異是不是遺傳給小孩的意思？</summary><p>不一定。多數癌症基因檢測看到的是腫瘤相關變異，不等於一定是遺傳性變異。若懷疑遺傳風險，需由醫師安排遺傳諮詢或其他檢查。</p></details>
+            <details><summary>Q7. ctDNA 數值下降代表治療有效嗎？</summary><p>可能是好的訊號，但不能單獨判斷。仍需搭配影像、腫瘤標記、症狀與醫師評估。</p></details>
+            <details><summary>Q8. ctDNA 上升代表復發嗎？</summary><p>不一定，但可能需要進一步追蹤。醫師會依病況安排影像、抽血或其他檢查。</p></details>
+            <details><summary>Q9. 檢測前需要空腹嗎？</summary><p>通常抽血基因檢測不一定需要空腹，但仍應依採檢單位與醫囑辦理。</p></details>
+            <details><summary>Q10. 最近有治療、輸血或手術，需要告訴醫師嗎？</summary><p>需要。近期治療、輸血、重大手術或特殊臨床狀況可能影響判讀，應主動告知醫療團隊。</p></details>
+            <details><summary>Q11. 報告看不懂怎麼辦？</summary><p>不要自行上網比對基因後決定治療。建議回診時請醫師說明檢測目的、檢出結果、限制與下一步。</p></details>
+            <details><summary>Q12. 我應該問醫師哪些問題？</summary><p>可以問：這次檢測目的是選藥、抗藥分析還是追蹤？如果沒有檢出變異，下一步是觀察、重抽、組織檢測，還是其他檢查？</p></details>
+          </div>
+          <p class="teaching-reminder">衛教提醒：FAQ 內容僅供理解檢測與準備回診討論，不取代醫師診斷、治療決策、臨床指引、TFDA 核准、健保給付或 MTB 討論。</p>
+        </div>
+      </section>
+
       <section class="quick-links" aria-label="功能入口">
         <a href="#lesson"><span>練</span><strong>開始報告判讀練習</strong><small>先用 10 分鐘教材建立五層判讀架構</small></a>
         <button type="button" id="openAssistantQuick"><span>AI</span><strong>AI 教學小助理</strong><small>產生醫護版解釋、民眾版解釋與判讀重點</small></button>
@@ -322,6 +457,6 @@
       </section>
     </aside>
 
-    <script src="./app.js?v=20260623-2" type="module"></script>
+    <script src="./app.js?v=20260623-3" type="module"></script>
   </body>
 </html>

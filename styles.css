@@ -95,8 +95,10 @@ a {
 
 .top-nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 22px;
+  justify-content: flex-end;
+  gap: 10px 18px;
   color: #52666a;
   font-weight: 700;
 }
@@ -358,6 +360,7 @@ a {
 .evidence-section,
 .steps-section,
 .lesson-section,
+.patient-section,
 .source-section {
   padding: clamp(44px, 6vw, 84px) clamp(20px, 5vw, 72px);
 }
@@ -605,6 +608,211 @@ a {
   background: var(--soft);
   color: var(--teal-dark);
   font-weight: 800;
+}
+
+.patient-section {
+  background:
+    linear-gradient(180deg, #f5fbfb 0%, #ffffff 48%, #f7fbfb 100%);
+}
+
+.patient-module {
+  margin-top: 24px;
+  padding: clamp(18px, 3vw, 28px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 14px 34px rgba(24, 56, 61, 0.07);
+}
+
+.limitation-module {
+  border-color: rgba(218, 123, 99, 0.5);
+  background: #fffaf8;
+}
+
+.scenario-grid,
+.cancer-icon-grid,
+.patient-flow,
+.warning-grid,
+.faq-list {
+  display: grid;
+  gap: 14px;
+}
+
+.scenario-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.scenario-grid article,
+.warning-grid article {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfefe;
+}
+
+.scenario-grid strong {
+  display: inline-flex;
+  padding: 5px 10px;
+  border-radius: 999px;
+  color: var(--teal-dark);
+  background: #e1f3f4;
+}
+
+.scenario-grid h4,
+.warning-grid h4,
+.patient-flow h4 {
+  margin: 12px 0 8px;
+  font-size: 19px;
+}
+
+.scenario-grid p,
+.warning-grid p,
+.patient-flow p,
+.patient-update,
+.faq-list p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.cancer-icon-grid {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.cancer-icon-grid article {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  min-height: 132px;
+  padding: 18px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfefe;
+  text-align: center;
+}
+
+.cancer-icon-grid span {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--teal);
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.cancer-icon-grid strong {
+  color: var(--teal-dark);
+}
+
+.patient-flow {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.patient-flow article {
+  position: relative;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfefe;
+}
+
+.patient-flow article:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 34px;
+  right: -15px;
+  width: 16px;
+  height: 2px;
+  background: var(--cyan);
+}
+
+.patient-flow span,
+.warning-grid strong {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--teal);
+  font-weight: 900;
+}
+
+.warning-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.warning-grid article {
+  border-color: rgba(218, 123, 99, 0.36);
+}
+
+.warning-grid strong {
+  background: var(--coral);
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.panel-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+.panel-table th,
+.panel-table td {
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.panel-table th {
+  color: var(--teal-dark);
+  background: var(--soft);
+  font-weight: 900;
+}
+
+.panel-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.patient-update {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--soft);
+}
+
+.faq-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.faq-list details {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfefe;
+}
+
+.faq-list summary {
+  min-height: 56px;
+  padding: 16px;
+  color: var(--teal-dark);
+  cursor: pointer;
+  font-weight: 900;
+  line-height: 1.5;
+}
+
+.faq-list p {
+  padding: 0 16px 16px;
 }
 
 .search-toolbar {
@@ -1034,8 +1242,17 @@ select {
   .steps-grid,
   .tier-grid,
   .five-layer-grid,
-  .timeline-grid {
+  .timeline-grid,
+  .scenario-grid,
+  .cancer-icon-grid,
+  .patient-flow,
+  .warning-grid,
+  .faq-list {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .patient-flow article:not(:last-child)::after {
+    display: none;
   }
 
   .search-toolbar,
@@ -1074,6 +1291,11 @@ select {
   .comparison-grid,
   .timeline-grid,
   .checklist-grid,
+  .scenario-grid,
+  .cancer-icon-grid,
+  .patient-flow,
+  .warning-grid,
+  .faq-list,
   .search-toolbar,
   .assistant-controls {
     grid-template-columns: 1fr;

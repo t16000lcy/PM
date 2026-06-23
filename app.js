@@ -76,7 +76,7 @@ async function loadVariantDatabase() {
   let lastError = null;
   for (const url of candidates) {
     try {
-      const response = await fetch(`${url}?v=20260623-2`, { cache: "no-store" });
+      const response = await fetch(`${url}?v=20260623-3`, { cache: "no-store" });
       if (!response.ok) {
         throw new Error(`${url} returned ${response.status}`);
       }
